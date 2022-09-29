@@ -1,0 +1,26 @@
+<%- include("partials/header") %>
+
+<!--bs:Card-->
+<section>
+  <div class="container mt-5">
+    <div class="row">
+
+      <% products.forEach(product => { %>
+      <div class="col-md-3">
+        <div class="card" style="width: 18rem;">
+          <img src=<%=product.imageLink%> class="card-img-top rounded" alt="product-photo">
+          <div class="card-body">
+            <h5 class="card-title"><%= product.name %></h5>
+            <p class="card-text"><%= product.description %></p>
+            <a href="#" class="btn btn-primary">Add to cart</a>
+          </div>
+        </div>
+      </div>
+      <% }) %>
+
+    </div>
+  </div>
+</section>
+<!--bs:Card-->
+
+<%- include("partials/footer") %>
