@@ -1,0 +1,30 @@
+<%- include("../partials/header") %>
+
+<div class="col-md-4 m-auto">
+  <h2 class="text-center">Add Product</h2>
+
+  <form action="/admin/add-product" method="post" enctype="multipart/form-data">
+    <div class="mb-3">
+      <label for="Name" class="form-label">Name</label>
+      <input type="text" class="form-control" name="name" id="Name">
+    </div>
+    <div class="mb-3">
+      <label for="category" class="form-label">Category</label>
+      <input type="text" class="form-control" name="category" id="Category">
+    </div>
+    <div class="mb-3">
+      <label for="Price" class="form-label">Price</label>
+      <input type="number" class="form-control" name="price" id="Price">
+    </div>
+    <div class="mb-3">
+      <label for="description" class="form-label">Description</label>
+      <input type="text" class="form-control" name="description" id="Description">
+    </div>
+    <div class="mb-3">
+      <label for="image" class="form-label">Image</label>
+      <input class="form-control" name="photo" type="file" id="image">
+    </div>
+    <button type="submit" class="btn btn-success">Submit</button>
+  </form>
+
+</div>
