@@ -43,5 +43,4 @@ router.post('/add-product', fileUpload(), (req, res) => {
   console.log(req.body);
   console.log(req.files.photo);
 })
-
 module.exports = router;
