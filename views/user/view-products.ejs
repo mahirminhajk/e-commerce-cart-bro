@@ -1,4 +1,4 @@
-<%- include("partials/header") %>
+<%- include("../partials/header") %>
 
 <!--bs:Card-->
 <section>
@@ -6,9 +6,9 @@
     <div class="row">
 
       <% products.forEach(product => { %>
-      <div class="col-md-3">
-        <div class="card" style="width: 18rem;">
-          <img src="/product-images/<%=product._id%>.jpg" alt="product-image" style="width: 120px; margin: auto;" class="card-img-top rounded" alt="product-photo">
+      <div class="col-md-3 p-3">
+        <div class="card" style="width: 15rem; height: 20rem;">
+          <img src="/product-images/<%=product._id%>.jpg" alt="product-image" style="width: 120px; margin: auto;" class="card-img-top rounded mt-4" alt="product-photo">
           <div class="card-body">
             <h5 class="card-title"><%= product.name %></h5>
             <p class="card-text"><%= product.description %></p>
@@ -23,4 +23,4 @@
 </section>
 <!--bs:Card-->
 
-<%- include("partials/footer") %>
+<%- include("../partials/footer") %>
