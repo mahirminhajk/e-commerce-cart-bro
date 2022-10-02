@@ -3,7 +3,9 @@ var express = require('express')
 var path = require('path')
 var cookieParser = require('cookie-parser')
 var logger = require('morgan')
-const fileUpload = require('express-fileupload');
+var db = require('./config/connection')
+const fileUpload = require('express-fileupload')
+
 
 var app = express()
 
@@ -19,6 +21,7 @@ app.use(express.json())
 app.use(express.urlencoded({ extended: false }))
 app.use(cookieParser())
 app.use(express.static('public'))
+db.connect()
 
 app.use('/admin', adminRouter)
 app.use('/', usersRouter)
