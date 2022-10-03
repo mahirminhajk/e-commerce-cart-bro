@@ -74,10 +74,21 @@
                   <a class="nav-link" href="#">Orders</a>
                 </li>
               </ul>
-              <form class="d-flex" role="search">
-                <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-                <button class="btn btn-outline-success" type="submit">Search</button>
-              </form>
+              <div class="btn-group">
+                <button type="button" class="btn btn-primary dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+                  <% if (!user) { %>
+                  Account
+                  <% } else { %><%= user.name %>
+                  <% } %>
+                </button>
+                <ul class="dropdown-menu dropdown-menu-end">
+                  <li><% if (!user) { %>
+                    <a href="/login" class="dropdown-item" type="button">Login</a>
+                    <% } else { %><a href="/logout" class="dropdown-item" type="button">Logout</a>
+                    <% } %>
+                  </li>
+                </ul>
+              </div>
             </div>
           </div>
         </nav>
