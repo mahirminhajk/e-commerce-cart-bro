@@ -1,0 +1,31 @@
+<%- include("../partials/header") %>
+
+<div class="col-md-4 m-auto">
+  <h2 class="text-center">Edit Product</h2>
+
+  <form action="/admin/edit-product/<%=product._id%>" method="post" enctype="multipart/form-data">
+    <div class="mb-3">
+      <label for="Name" class="form-label">Name</label>
+      <input type="text" class="form-control" name="name" id="Name" value="<%=product.name%>">
+    </div>
+    <div class="mb-3">
+      <label for="category" class="form-label">Category</label>
+      <input type="text" class="form-control" name="category" id="Category" value="<%=product.category%>">
+    </div>
+    <div class="mb-3">
+      <label for="Price" class="form-label">Price</label>
+      <input class="form-control" name="price" id="Price" value="<%=product.price%>">
+    </div>
+    <div class="mb-3">
+      <label for="description" class="form-label">Description</label>
+      <input type="text" class="form-control" name="description" id="Description" value="<%=product.description%>">
+    </div>
+    <div class="mb-3">
+      <label for="image" class="form-label">Image</label>
+      <img src="/product-images/<%=product._id%>.jpg" alt="already-have-image" width="100">
+      <input class="form-control" name="photo" type="file" id="image">
+    </div>
+    <button type="submit" class="btn btn-success">Submit</button>
+  </form>
+
+</div>
