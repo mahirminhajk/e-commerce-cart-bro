@@ -3,6 +3,13 @@ var productHelpers = require('../helpers/product-helpers')
 var userHelpers = require('../helpers/user-helpers')
 var router = express.Router()
 
+const verifyLogin = (req, res, next) => {//middlewire
+  if (req.session.loggedIn) {
+    next()
+  } else {
+    res.redirect('/login')
+  }
+}
 let user;
 
 router.get('/', (req, res) => {
@@ -14,7 +21,12 @@ router.get('/', (req, res) => {
 })
 
 router.get('/login', (req, res) => {
-  res.render('user/login', { admin: false, user: user })
+  if (req.session.loggedIn) {
+    res.redirect('/')
+  } else {
+    res.render('user/login', { admin: false, user: user, loginFail: req.session.loginFail })
+    req.session.loginFail = false
+  }
 })
 
 router.get('/signup', (req, res) => {
@@ -23,7 +35,7 @@ router.get('/signup', (req, res) => {
 
 router.post('/signup', (req, res) => {
   userHelpers.doSignup(req.body).then((response) => {
-    console.log(response);
+    res.redirect('/')
   })
 })
 
@@ -34,6 +46,7 @@ router.post('/login', (req, res) => {
       req.session.user = response.user
       res.redirect('/')
     } else {
+      req.session.loginFail = true
       res.redirect('/login')
     }
   })
@@ -43,5 +56,10 @@ router.get('/logout', (req, res) => {
   req.session.destroy()
   res.redirect('/')
 })
+
+router.get('/cart', verifyLogin, (req, res) => {
+  res.render('user/cart', { admin: false, user: user })
+})
+
 
 module.exports = router;

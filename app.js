@@ -4,7 +4,7 @@ var path = require('path')
 var cookieParser = require('cookie-parser')
 var logger = require('morgan')
 var db = require('./config/connection')
-const fileUpload = require('express-fileupload')
+// const fileUpload = require('express-fileupload')
 var session = require('express-session')
 
 
@@ -23,11 +23,11 @@ app.use(express.urlencoded({ extended: false }))
 app.use(cookieParser())
 app.use(express.static('public'))
 db.connect()
-app.use(session({ secret: "key", cookie: { maxAge: 600000 } }))
+app.use(session({ secret: "key", resave: false, saveUninitialized: true, cookie: { maxAge: 600000 } }))
 
 app.use('/admin', adminRouter)
 app.use('/', usersRouter)
-app.use(fileUpload());
+// app.use(fileUpload());
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {

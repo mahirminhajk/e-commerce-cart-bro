@@ -1,5 +1,6 @@
 var db = require('../config/connection')
 var { PRODUCT_COLLECTION } = require('../config/collections')
+const { ObjectId } = require('mongodb')
 
 module.exports = {
     addProduct: (product, cb) => {
@@ -9,9 +10,16 @@ module.exports = {
         })
     },
     getAllProducts: () => {
-        return new Promise(async (resolove, reject) => {
+        return new Promise(async (resolve, reject) => {
             let products = await db.get().collection(PRODUCT_COLLECTION).find().toArray()
-            resolove(products)
+            resolve(products)
+        })
+    },
+    deleteProduct: (id) => {
+        return new Promise((resolve, reject) => {
+            db.get().collection(PRODUCT_COLLECTION).deleteOne({ "_id": ObjectId(id) }).then((response) => {
+                resolve(response.acknowledged)
+            })
         })
     }
 }

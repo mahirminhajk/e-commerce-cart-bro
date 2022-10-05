@@ -6,6 +6,9 @@
       <div class="container mt-5 ps-5">
         <h2 class="text-center">Login</h2>
         <form action="/login" method="post">
+          <% if (loginFail) { %>
+          <div class="p-2 m-5 bg-warning text-danger text-center rounded">Invalid email address or password</div>
+          <% } %>
           <div class="mb-3">
             <label for="Email" class="form-label">Email address</label>
             <input type="email" class="form-control" id="Email" name="email" placeholder="Enter email" autofocus required>
